@@ -1,0 +1,35 @@
+@font-face {
+  font-family: Future Earth;
+  src: url(future_earth/Future\ Earth\ v2.ttf);
+}
+
+* {
+  margin: 0px;
+  font-family: Future Earth;
+  font-size: 10px;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+body {
+  background-color: rgb(87, 62, 42);
+  overflow: hidden;
+}
+
+#ball {
+  position: relative;
+  font-size: 25px;
+  left: -125px;
+  top: -125px;
+  width: 200px;
+  text-align: center;
+  height: 200px;
+  border-radius: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+#ball span {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%);
+}
