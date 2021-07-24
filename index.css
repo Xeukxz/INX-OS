@@ -33,3 +33,18 @@ body {
   top: 50%;
   transform: translate(-50%);
 }
+
+.rect {
+  position: absolute;
+  top: calc(50% - 50px);
+  left: calc(50% - 75px);
+  width: 150px;
+  height: 100px;
+  background-color: blue;
+  border: 2px solid black;
+}
+
+#rects {
+  width: 100%;
+  height: 100%;
+}
