@@ -64,8 +64,8 @@ $(() => {
       y: event.clientY
     }
     console.log($(event.target)[0].localName)
-    if($(event.target)[0].localName == 'body') return
-    else lastElement = $(event.target)
+    /* if($(event.target)[0].localName == 'body') return
+    else lastElement = $(event.target) */
     //withinAdjustRange(lastElement)
     if (mousedown) {
       $(obj).css('top', `${deltaTop + mouse.y - mouseOffsetY}px`)
