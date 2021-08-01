@@ -4,17 +4,87 @@
   <title></title>
   <link rel="stylesheet" type="text/css" href="index.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="Classes.js"></script>
   <script src="index.js"></script>
+  <script src="/programs/cmd.js"></script>
 </head>
 
 <body>
+  <img id="bgimg" src="INX3.png">
+  <!-- <img src="https://i.redd.it/0qwstvt5s8b71.jpg" style="position: absolute; width:500;">
+  <div id="ball"><span>poopee</span></div> -->
+  <!-- <div class="rect" id="rect0"></div> -->
+  <!--   <div class="Window" id="window0">
+    <div class="topBar">
+      <p class="title">Window</p>
+      <div class="xButton">
+        <svg height="25" width="25">
+          <line x1="7" y1="7" x2="18" y2="18" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+          <line x1="7" y1="18" x2="18" y2="7" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+        </svg>
+        <div class="xOverlay"></div>
+      </div>
+      <div class="bsButton">
+        <svg class=".max" height="25" width="25">
+          <line x1="7" y1="7" x2="7" y2="18" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+          <line x1="6" y1="18" x2="19" y2="18" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+          <line x1="18" y1="18" x2="18" y2="7" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+          <line x1="19" y1="7" x2="6" y2="7" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+        </svg>
+        <svg class=".min" style="display: none" height="25" width="25">
+          <line x1="6" y1="18" x2="19" y2="18" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+        </svg>
+        <div class="bsOverlay"></div>
+      </div>
+    </div>
+    <div class="content">
+    </div>
+  </div> -->
 
-  <img src="https://i.redd.it/0qwstvt5s8b71.jpg" style="position: absolute; width:500;">
-  <div id="ball"><span>poopee</span></div>
-  <div class="rect" id="rect0"></div>
+  <div id="front"></div>
+
+  <div id="taskBar">
+    <div class="tbIcon" id="menuIcon">
+      <div class="tbIconContent">
+        <img src="INX Icon.png" style="height: 40px; width: 40px;">
+      </div>
+      <div class="tbIconOverlay" id="menuIconOverlay"></div>
+    </div>
+
+    <div class="tbIcon" id="searchIcon">
+      <div class="tbIconContent">
+        <svg height="40" width="40">
+          <circle cx="23" cy="18" r="6" stroke="white" stroke-width="1.5" fill="none" />
+          <line x1="12" y1="29" x2="19" y2="22" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+        </svg>
+      </div>
+      <div class="tbIconOverlay" id=searchIconOverlay"></div>
+    </div>
+
+    <div class="tbIcon" id="cmdIcon">
+      <div class="tbIconContent">
+        <svg height="40" width="40">
+          <line x1="10" y1="15" x2="15" y2="20" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+          <line x1="15" y1="20" x2="10" y2="25" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+          <line x1="20" y1="25" x2="30" y2="25" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+          
+          <line x1="5" y1="11" x2="35" y2="11" style="stroke:rgb(187, 187, 187);stroke-width:1.7" />
+          <line x1="35" y1="10" x2="35" y2="30" style="stroke:rgb(187, 187, 187);stroke-width:1.7" />
+          <line x1="35" y1="29" x2="5" y2="29" style="stroke:rgb(187, 187, 187);stroke-width:1.7" />
+          <line x1="5" y1="30" x2="5" y2="10" style="stroke:rgb(187, 187, 187);stroke-width:1.7" />
+        </svg>
+      </div>
+      <div class="tbIconOverlay" id="cmdIconOverlay"></div>
+    </div>
+
+  </div>
+
+  <button id="addWin" style="float: right">
+    Add Window
+  </button>
 
 
- 
+
 
 </body>
 

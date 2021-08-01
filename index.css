@@ -12,8 +12,87 @@
 }
 
 body {
-  background-color: rgb(87, 62, 42);
+  background-color: black;
   overflow: hidden;
+  color: rgb(187, 187, 187);
+}
+
+#bgimg {
+  position: absolute;
+  height: 150%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.window {
+  position: absolute;
+  width: calc(25% + 0px);
+  height: calc(33.33% + 0px);
+  left: calc(50% - 150px);
+  top: calc(50% - 150px);
+  background-color: rgb(37, 37, 37);
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.247);
+}
+
+.topBar {
+  height: 30px;
+  background-color: rgb(75, 75, 75);
+}
+
+.xButton {
+  float: right;
+  width: 25px;
+  height: 25px;
+  background-color: rgba(255, 0, 0, 0);
+}
+
+.xButton:hover {
+  background-color: rgba(255, 0, 0, 0.582);
+}
+
+.xOverlay {
+  position: absolute;
+  top: 0px;
+  width: inherit;
+  height: inherit;
+}
+
+.bsButton {
+  float: right;
+  width: 25px;
+  height: 25px;
+  background-color: rgba(255, 0, 0, 0);
+}
+
+.bsButton:hover {
+  background-color: rgba(172, 172, 172, 0.274);
+}
+
+.bsOverlay {
+  position: absolute;
+  top: 0px;
+  width: inherit;
+  height: inherit;
+}
+
+.topBarOverlay {
+  position: absolute;
+  top: 0px;
+  width: calc(100% - 50px);
+  height: inherit;
+}
+
+.title {
+  float: left;
+  position: relative;
+  top: 50%;
+  transform: translate(5px, -50%);
+}
+
+.content {
+  width: 100%;
+  height: calc(100% - 25px);
 }
 
 #ball {
@@ -47,4 +126,38 @@ body {
 #rects {
   width: 100%;
   height: 100%;
+}
+
+#taskBar {
+  position: absolute;
+  top: calc(100% - 40px);
+  width: 100%;
+  height: 40px;
+  background-color: rgb(27, 27, 27);
+}
+
+.tbIcon {
+  position: relative;
+  height: 40px;
+  width: 50px;
+  float: left;
+
+}
+
+.tbIconContent {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  float: left;
+}
+
+.tbIcon:hover {
+  background-color: rgb(63, 63, 63);
+
+}
+
+.tbIconOverlay {
+  position: absolute;
+  height: inherit;
+  width: inherit;
 }
