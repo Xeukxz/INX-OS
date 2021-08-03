@@ -1,5 +1,5 @@
 let mouse, mousedown, deltaLeft, deltaTop, mouseOffsetX, mouseOffsetY, obj, objClass, objParent, expandEl = false,
-  win, currentWin, windows = [], lastWin, offsetLeft = 0
+  win, currentWin, windows = [], lastWin, offsetLeft = 0, newWindow = {}
 $(() => {
 
   function generateID() {
@@ -50,35 +50,22 @@ $(() => {
   let rectNo = 0
 
   function bringToFront(win) {
-    //console.log(win)
     win.parentNode.insertBefore(win, $('#front')[0])
     /*     $('#front')[0].parentNode.insertBefore($('#front')[0], win) */
   }
 
   function removeWindow(win) {
-    //console.log('start')
-/*     id = win.id
-    //console.log(id)
-    vals = windows
-    //console.log(vals)
-    //console.log(windows)
-    removeWin = windows.find(w => w.name = win.id)
-    for (let i = 0; i < vals.length; i++) {
-      if (vals[i] = id) continue
-      windows.push(vals[i])
-    } */
     win.remove()
-
   }
 
-  function addWindow() {
-    let window = new Window(generateID())
+  function addWindow(name, id) {
+    let window = new Window(name, id)
     windows.push(window)
-    //console.log($(`#${window.name}`)[0])
-    bringToFront($(`#${window.name}`)[0])
+    window.bringToTop($(`#${window.name}`)[0])
+    if(name == "cmd") newWindow = {name: 'cmd', id: id}
 
   }
-  addWindow()
+  addWindow('window', generateID())
 
   function setMousePos(Obj) {
     mousedown = true
@@ -90,14 +77,9 @@ $(() => {
 
   function getWin(Obj) {
     let val = Obj
-    console.log($(val))
     while ($(val)[0].className != "window") {
-      console.log($(val))
-      //console.log($(val)[0].className)
       val = $(val)[0].parentElement
-      //console.log(val)
     }
-    //console.log(val)
     return val
   }
 
@@ -106,12 +88,12 @@ $(() => {
   }
 
   $('#addWin').on('click', event => {
-    addWindow()
+    addWindow('window', generateID())
   })
 
   $(document).on('click', event => {
     if (event.target.id == "cmdIconOverlay") {
-      addWindow()
+      addWindow('cmd', generateID())
     }
   })
 
@@ -122,25 +104,17 @@ $(() => {
     objParent = $(obj)[0].parentElement
     win = getWin(obj)
     incClass = windows.find(w => w.name = win.id)
-    //console.log(obj)
-    //console.log(objClass)
-    //console.log($(win))
     if (obj[0].localName == "body") return
     if (objClass == "topBarOverlay") {
-      //console.log(windows.find(w => w.name = win.id).lastPos.x)
       windows.find(w => w.name = win.id).lastPos.x = $(win)[0].offsetLeft
       windows.find(w => w.name = win.id).lastPos.y = $(win)[0].offsetTop
       setMousePos(win)
       bringToFront(win)
     } else if (objClass == "xOverlay") {
-      //console.log(win)
       removeWindow(win)
     } else if (objClass == "bsOverlay") {
       siblings = obj[0].parentNode.children
-      //console.log(obj[0].parentNode.children)
-      //console.log(win)
       if ($(siblings[0]).css('display') == "inline") {
-        //console.log(win.id)
         windows.find(w => w.name = win.id).maximise()
       } else {
         windows.find(w => w.name = win.id).minimise()
@@ -148,18 +122,16 @@ $(() => {
       }
     }
 
-    //console.log(obj[0].id, `rect${rectNo}`)
     if (obj[0].classList.value == 'rect' && obj[0].id == `rect${rectNo}`) {
       rectNo++
       $('body').append(`
         <div class="rect" id="rect${rectNo}" style="background-color: rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})">
       `)
     }
-    //console.log(obj[0].classList.value)
   })
+
   $(document).on('mouseup', event => {
     mousedown = false
-    //fall(obj)
 
   })
   $(document).on('mousemove', event => {
@@ -167,24 +139,15 @@ $(() => {
       x: event.clientX,
       y: event.clientY
     }
-    //console.log($(event.target)[0].localName)
     /* if($(event.target)[0].localName == 'body') return
     else lastElement = $(event.target) */
     //withinAdjustRange(lastElement)
     if (mousedown) {
-      //console.log($(win).css('top'))
       if(windows.find(w => w.name = win.id).fullscreen == true) {
-        //console.log($(win).width())
         windows.find(w => w.name = win.id).minimise()
         $(win).css('left', `${mouse.x - (windows.find(w => w.name = win.id).width/2)}px`)
         offsetLeft = mouse.x - (windows.find(w => w.name = win.id).width/2)
-        //console.log(mouse.x - (windows.find(w => w.name = win.id).width/2))
-        //console.log($(win).width())
-        //console.log($(win).css('top'))
       }
-      /* $(win).css('top', `${deltaTop + mouse.y - mouseOffsetY}px`) */
-      /* $(win).css('left', `${deltaLeft + mouse.x - mouseOffsetX}px`) */
-      //console.log($(win).css('top'))
       if ($(win).css('top').replace('px', '') < 0) {
         $(win).css('top', `0px`)
       }

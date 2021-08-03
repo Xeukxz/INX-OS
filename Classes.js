@@ -1,6 +1,7 @@
 class Window {
-  constructor(name) {
+  constructor(name, id) {
     this.name = name
+    this.id = id
     this.width = window.innerWidth / 4
     this.height = window.innerHeight / 3
     this.fullscreen = false
@@ -16,39 +17,40 @@ class Window {
   }
   createHtml() {
     $('body').append(`  
-      <div class="window" id="${this.name}">
+      <div class="window" id="${this.id}">
         <div class="topBar">
-          <p class="title">Window</p>
+          <p class="title">${this.name}</p>
           <div class="xButton">
-            <svg height="25" width="25">
-              <line x1="7" y1="7" x2="18" y2="18" style="stroke:rgb(187, 187, 187);stroke-width:2" />
-              <line x1="7" y1="18" x2="18" y2="7" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+            <svg height="30" width="30">
+              <line x1="9" y1="9" x2="21" y2="21" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+              <line x1="9" y1="21" x2="21" y2="9" style="stroke:rgb(187, 187, 187);stroke-width:2" />
             </svg>
             <div class="xOverlay"></div>
           </div>
           <div class="bsButton">
-            <svg class=".max" height="25" width="25">
-              <line x1="7" y1="7" x2="7" y2="18" style="stroke:rgb(187, 187, 187);stroke-width:2" />
-              <line x1="6" y1="18" x2="19" y2="18" style="stroke:rgb(187, 187, 187);stroke-width:2" />
-              <line x1="18" y1="18" x2="18" y2="7" style="stroke:rgb(187, 187, 187);stroke-width:2" />
-              <line x1="19" y1="7" x2="6" y2="7" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+            <svg class=".max" height="30" width="30">
+              <line x1="9" y1="9" x2="9" y2="21" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+              <line x1="8" y1="21" x2="22" y2="21" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+              <line x1="21" y1="21" x2="21" y2="9" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+              <line x1="22" y1="9" x2="8" y2="9" style="stroke:rgb(187, 187, 187);stroke-width:2" />
             </svg>
-            <svg class=".min" style="display: none" height="25" width="25">
-              <line x1="6" y1="18" x2="19" y2="18" style="stroke:rgb(187, 187, 187);stroke-width:2" />
+            <svg class=".min" style="display: none" height="30" width="30">
+              <line x1="9" y1="21" x2="21" y2="21" style="stroke:rgb(187, 187, 187);stroke-width:2" />
             </svg>
             <div class="bsOverlay"></div>
             </div>
           <div class="topBarOverlay"></div>
         </div>
-        <div class="content">
-        </div>
+        <div class="content"></div>
       </div>
     `)
+  }
+  bringToTop() {
+    $(`#${this.id}`)[0].parentNode.insertBefore($(`#${this.id}`)[0], $('#front')[0])
   }
   maximise(val) {
     this.lastPos.x = $(`#${this.name}`)[0].offsetLeft
     this.lastPos.y = $(`#${this.name}`)[0].offsetTop
-    console.log(this.lastPos)
     this.element.css('width', `100%`)
     this.element.css('height', `100%`)
     this.element.css('left', `0px`)
@@ -67,7 +69,6 @@ class Window {
     this.element.css('top', `${this.lastPos.y}px`)
     $(this.element[0].children[0].children[2].children[0]).css('display', 'inline')
     $(this.element[0].children[0].children[2].children[1]).css('display', 'none')
-    console.log(this.element)
     this.fullscreen = false
   }
 

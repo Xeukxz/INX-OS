@@ -5,16 +5,19 @@
 
 * {
   margin: 0px;
-  font-family: Future Earth;
-  font-size: 10px;
-  user-select: none;
-  -webkit-user-drag: none;
 }
 
 body {
   background-color: black;
   overflow: hidden;
   color: rgb(187, 187, 187);
+  font-size: 10px;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+#bgimg {
+  -webkit-user-drag: none;
 }
 
 #bgimg {
@@ -38,12 +41,13 @@ body {
 .topBar {
   height: 30px;
   background-color: rgb(75, 75, 75);
+  font-family: Future Earth;
 }
 
 .xButton {
   float: right;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   background-color: rgba(255, 0, 0, 0);
 }
 
@@ -60,8 +64,8 @@ body {
 
 .bsButton {
   float: right;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   background-color: rgba(255, 0, 0, 0);
 }
 
@@ -92,7 +96,9 @@ body {
 
 .content {
   width: 100%;
-  height: calc(100% - 25px);
+  height: calc(100% - 30px);
+  user-select: all;
+  overflow: hidden;
 }
 
 #ball {
@@ -160,4 +166,51 @@ body {
   position: absolute;
   height: inherit;
   width: inherit;
+}
+
+#cmdPrefix, #cmdInput {
+  width: fit-content;
+  float: left;
+  font-size: 17px;
+  font-family: 'Anonymous Pro';
+  outline: none;
+}
+
+#cmdContentBox p {
+  font-size: 17px;
+  font-family: 'Anonymous Pro';
+
+}
+
+#cmdPrefix {
+  margin-right: 9px;
+}
+
+#cmdContentBox, #cmdInputBox {
+  font-family: 'Anonymous Pro';
+  font-size: 13px;
+  overflow: hidden;
+}
+
+#cmdContent::-webkit-scrollbar {
+  width: 10px
+}
+
+#cmdContent::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0)
+}
+
+#cmdContent::-webkit-scrollbar-thumb {
+  background-color: rgb(68, 68, 68)
+}
+
+#cmdContent {
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.877);
+}
+
+#cmdStretcher {
+  height: calc(100% - 17px);
 }
