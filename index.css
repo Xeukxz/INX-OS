@@ -16,6 +16,10 @@ body {
   user-select: none;
 }
 
+p {
+  padding-left: 5px;
+}
+
 #bgimg {
   -webkit-user-drag: none;
 }
@@ -97,7 +101,7 @@ body {
 .content {
   width: 100%;
   height: calc(100% - 30px);
-  user-select: all;
+  user-select: text;
   overflow: hidden;
 }
 

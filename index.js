@@ -1,5 +1,5 @@
 let mouse, mousedown, deltaLeft, deltaTop, mouseOffsetX, mouseOffsetY, obj, objClass, objParent, expandEl = false,
-  win, currentWin, windows = [], lastWin, offsetLeft = 0, newWindow = {}
+  win, currentWin, windows = [], lastWin, offsetLeft = 0, newWindow = {}, cmdOpen = false
 $(() => {
 
   function generateID() {
@@ -93,7 +93,12 @@ $(() => {
 
   $(document).on('click', event => {
     if (event.target.id == "cmdIconOverlay") {
-      addWindow('cmd', generateID())
+      console.log(cmdOpen)
+      if(!cmdOpen) {
+        addWindow('cmd', generateID())
+        console.log($('#cmdIcon'))
+        $('#cmdIconOverlay').css('background-color', 'rgba(117, 117, 117, 0.349)')
+      }
     }
   })
 
@@ -112,6 +117,10 @@ $(() => {
       bringToFront(win)
     } else if (objClass == "xOverlay") {
       removeWindow(win)
+      if($(win)[0].children[0].children[0].innerHTML == "cmd") {
+        $('#cmdIconOverlay').css('background-color', 'rgba(117, 117, 117, 0)')
+        cmdOpen = false
+      }
     } else if (objClass == "bsOverlay") {
       siblings = obj[0].parentNode.children
       if ($(siblings[0]).css('display') == "inline") {

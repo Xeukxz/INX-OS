@@ -1,24 +1,24 @@
 console.log('cmd.js ✔')
 
-let cmdOpen = false
+let cmdHistory = []
 
 $(() => {
   $('#cmdIconOverlay').on('click', event => {
-    if(!cmdOpen) cmdOpen = true
-    else return
 
     setTimeout(() => {
+      console.log(cmdOpen)
+      if (!cmdOpen) cmdOpen = true
+      else return
 
       if (newWindow.name == 'cmd') {
         $($(`#${newWindow.id}`)[0].children[1]).append(`
       <div id="cmdContent">
         <div id="cmdContentBox">
-          <p class="cmdLine">> avoondelacaca</p>
         </div>
         <div id="cmdInputBox">
           <p>
             <span id="cmdPrefix">></span>
-            <span type="text" id="cmdInput" contentEditable='true' spellcheck="false"></span>
+            <span id="cmdInput" contentEditable='true' spellcheck="false"></span>
           </p>
         </div>
         <div id="cmdStretcher"></div>
@@ -28,16 +28,33 @@ $(() => {
       }
     }, 1);
 
-    $(document).on('keypress', event => {
-      if (event.target == $('#cmdInput')[0]) {
-        if (event.keyCode == '13') {
-          $(`#cmdContentBox`).append(`<p>> ${$('#cmdInput').html()}</p>`)
-          $('#cmdInput').html('')
-          return false
-        }
-      }
-    })
-
   })
 
+/*   setInterval(() => {
+    console.log(cmdOpen)
+  }, 1000); */
+
+})
+
+$(document).on('keypress', event => {
+  if (event.target == $('#cmdInput')[0]) {
+    if (event.keyCode == '13') {
+      let cmdText = $('#cmdInput').html()
+      while (cmdText.includes('&lt;')) cmdText = cmdText.replace('&lt;', '<')
+      while (cmdText.includes('&gt;')) cmdText = cmdText.replace('&gt;', '>')
+      console.log(cmdText)
+      $(`#cmdContentBox`).append(`<p>> ${cmdText}</p>`)
+      $('#cmdInput').html('')
+      return false
+    }
+
+  }
+})
+
+$(document).on('click', event => {
+  console.log(event.target.id)
+  if (event.target.id == 'cmdStretcher') {
+    console.log('mogusy')
+    $('#cmdInput').focus()
+  }
 })
