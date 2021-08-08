@@ -1,4 +1,4 @@
-console.log('cmd.js ✔')
+//console.log('cmd.js ✔')
 
 let cmdHistory = []
 
@@ -47,7 +47,6 @@ $(document).on('keypress', event => {
       $('#cmdInput').html('')
       return false
     }
-
   }
 })
 
