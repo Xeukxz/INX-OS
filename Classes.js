@@ -42,6 +42,10 @@ class Window {
           <div class="topBarOverlay"></div>
         </div>
         <div class="content"></div>
+        <div class="leftExpander"></div>
+        <div class="rightExpander"></div>
+        <div class="topExpander"></div>
+        <div class="bottomExpander"></div>
       </div>
     `)
   }
@@ -79,6 +83,17 @@ class Window {
     this.pos.x = x
     this.pos.y = y
     this.element
+  }
+
+  resizeEW(x, xx) {
+    console.log('mama')
+    this.element.css('left', `${x}px`)
+    this.element.css('width', `${xx}px`)
+  }
+  resizeNS(y, yy) {
+    console.log('mama')
+    this.element.css('top', `${y}px`)
+    this.element.css('height', `${yy}px`)
   }
 
   get element() {

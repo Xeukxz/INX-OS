@@ -218,3 +218,48 @@ p {
 #cmdStretcher {
   height: calc(100% - 17px);
 }
+
+.leftExpander {
+  position: absolute;
+  top: 5px;
+  height: calc(100% - 10px);
+  width: 5px;
+/*   background-color: red; */
+}
+.leftExpander:hover {
+  cursor: ew-resize;
+}
+.rightExpander {
+  position: absolute;
+  top: 5px;
+  height: calc(100% - 10px);
+  width: 5px;
+/*   background-color: red; */
+  left: 100%;
+  transform: translate(-100%);
+}
+.rightExpander:hover {
+  cursor: ew-resize;
+}
+.topExpander {
+  position: absolute;
+  top: 0px;
+  left: 5px;
+  width: calc(100% - 10px);
+  height: 5px;
+/*   background-color: red; */
+}
+.topExpander:hover {
+  cursor: ns-resize;
+}
+.bottomExpander {
+  position: absolute;
+  width: calc(100% - 10px);
+  left: 5px;
+  height: 5px;
+/*   background-color: red; */
+  transform: translate(0%, -100%);
+}
+.bottomExpander:hover {
+  cursor: ns-resize;
+}

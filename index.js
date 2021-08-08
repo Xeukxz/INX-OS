@@ -1,5 +1,13 @@
 let mouse, mousedown, deltaLeft, deltaTop, mouseOffsetX, mouseOffsetY, obj, objClass, objParent, expandEl = false,
-  win, currentWin, windows = [], lastWin, offsetLeft = 0, newWindow = {}, cmdOpen = false
+  win, currentWin, windows = [],
+  lastWin, offsetLeft = 0,
+  newWindow = {},
+  cmdOpen = false,
+  resizeLmousedown = false,
+  resizeRmousedown = false,
+  resizeTmousedown = false,
+  resizeBmousedown = false,
+  origionalWidth, origionalHeight
 $(() => {
 
   function generateID() {
@@ -62,13 +70,15 @@ $(() => {
     let window = new Window(name, id)
     windows.push(window)
     window.bringToTop($(`#${window.name}`)[0])
-    if(name == "cmd") newWindow = {name: 'cmd', id: id}
+    if (name == "cmd") newWindow = {
+      name: 'cmd',
+      id: id
+    }
 
   }
   addWindow('window', generateID())
 
   function setMousePos(Obj) {
-    mousedown = true
     deltaLeft = $(Obj)[0].offsetLeft
     deltaTop = $(Obj)[0].offsetTop
     mouseOffsetX = mouse.x
@@ -87,6 +97,10 @@ $(() => {
     return $(win)[0].id
   }
 
+  function resizeLeft(obj) {
+
+  }
+
   $('#addWin').on('click', event => {
     addWindow('window', generateID())
   })
@@ -94,7 +108,7 @@ $(() => {
   $(document).on('click', event => {
     if (event.target.id == "cmdIconOverlay") {
       console.log(cmdOpen)
-      if(!cmdOpen) {
+      if (!cmdOpen) {
         addWindow('cmd', generateID())
         console.log($('#cmdIcon'))
         $('#cmdIconOverlay').css('background-color', 'rgba(117, 117, 117, 0.349)')
@@ -102,6 +116,14 @@ $(() => {
     }
   })
 
+  /*   $(document).on('mouseover', event => {
+      console.log($(event.target))
+      if($(event.target)[0].className == 'leftExpander') {
+        console.log('oogachacka')
+        
+      }
+    })
+   */
   $(document).on('mousedown', event => {
     offsetLeft = 0
     obj = $(event.target)
@@ -113,11 +135,12 @@ $(() => {
     if (objClass == "topBarOverlay") {
       windows.find(w => w.name = win.id).lastPos.x = $(win)[0].offsetLeft
       windows.find(w => w.name = win.id).lastPos.y = $(win)[0].offsetTop
+      mousedown = true
       setMousePos(win)
       bringToFront(win)
     } else if (objClass == "xOverlay") {
       removeWindow(win)
-      if($(win)[0].children[0].children[0].innerHTML == "cmd") {
+      if ($(win)[0].children[0].children[0].innerHTML == "cmd") {
         $('#cmdIconOverlay').css('background-color', 'rgba(117, 117, 117, 0)')
         cmdOpen = false
       }
@@ -129,6 +152,43 @@ $(() => {
         windows.find(w => w.name = win.id).minimise()
 
       }
+    } else if (objClass == "leftExpander") {
+      resizeLmousedown = true
+      deltaLeft = $(win)[0].offsetLeft
+      deltaTop = $(win)[0].offsetTop
+      mouseOffsetX = mouse.x
+      origionalWidth = $(`#${win.id}`).width()
+      mouseOffsetY = mouse.y
+
+      bringToFront(win)
+
+    } else if (objClass == "rightExpander") {
+      resizeRmousedown = true
+      deltaLeft = $(win)[0].offsetLeft
+      deltaTop = $(win)[0].offsetTop
+      mouseOffsetX = mouse.x
+      origionalWidth = $(`#${win.id}`).width()
+      mouseOffsetY = mouse.y
+
+      bringToFront(win)
+    } else if (objClass == "topExpander") {
+      resizeTmousedown = true
+      deltaLeft = $(win)[0].offsetLeft
+      deltaTop = $(win)[0].offsetTop
+      mouseOffsetX = mouse.x
+      origionalHeight = $(`#${win.id}`).height()
+      mouseOffsetY = mouse.y
+
+      bringToFront(win)
+    } else if (objClass == "bottomExpander") {
+      resizeBmousedown = true
+      deltaLeft = $(win)[0].offsetLeft
+      deltaTop = $(win)[0].offsetTop
+      mouseOffsetX = mouse.x
+      origionalHeight = $(`#${win.id}`).height()
+      mouseOffsetY = mouse.y
+
+      bringToFront(win)
     }
 
     if (obj[0].classList.value == 'rect' && obj[0].id == `rect${rectNo}`) {
@@ -141,8 +201,13 @@ $(() => {
 
   $(document).on('mouseup', event => {
     mousedown = false
+    resizeLmousedown = false
+    resizeRmousedown = false
+    resizeTmousedown = false
+    resizeBmousedown = false
 
   })
+
   $(document).on('mousemove', event => {
     mouse = {
       x: event.clientX,
@@ -152,10 +217,11 @@ $(() => {
     else lastElement = $(event.target) */
     //withinAdjustRange(lastElement)
     if (mousedown) {
-      if(windows.find(w => w.name = win.id).fullscreen == true) {
+      console.log('huh')
+      if (windows.find(w => w.name = win.id).fullscreen == true) {
         windows.find(w => w.name = win.id).minimise()
         $(win).css('left', `${mouse.x - (windows.find(w => w.name = win.id).width/2)}px`)
-        offsetLeft = mouse.x - (windows.find(w => w.name = win.id).width/2)
+        offsetLeft = mouse.x - (windows.find(w => w.name = win.id).width / 2)
       }
       if ($(win).css('top').replace('px', '') < 0) {
         $(win).css('top', `0px`)
@@ -164,13 +230,40 @@ $(() => {
       let wind = windows.find(w => w.name = win.id)
       currentWin = win
     }
+    if (resizeLmousedown) {
+      console.log(offsetLeft + deltaLeft + mouse.x - mouseOffsetX, mouseOffsetX - mouse.x)
+      console.log($(`#${win.id}`).width(), mouseOffsetX, mouse.x)
+      windows.find(w => w.name = win.id).resizeEW(offsetLeft + deltaLeft + mouse.x - mouseOffsetX, mouseOffsetX + origionalWidth - mouse.x)
+      if ($(`#${win.id}`).width() < 200) $(`#${win.id}`).width(200)
+
+    }
+    if (resizeRmousedown) {
+      console.log(offsetLeft + deltaLeft + mouse.x - mouseOffsetX, mouseOffsetX - mouse.x)
+      console.log($(`#${win.id}`).width(), mouseOffsetX, mouse.x)
+      windows.find(w => w.name = win.id).resizeEW(deltaLeft, mouse.x - mouseOffsetX + origionalWidth)
+      if ($(`#${win.id}`).width() < 200) $(`#${win.id}`).width(200)
+
+    }
+    if (resizeTmousedown) {
+      console.log(offsetLeft + deltaLeft + mouse.x - mouseOffsetX, mouseOffsetX - mouse.x)
+      console.log($(`#${win.id}`).width(), mouseOffsetX, mouse.x)
+      windows.find(w => w.name = win.id).resizeNS(deltaTop + mouse.y - mouseOffsetY, mouseOffsetY + origionalHeight - mouse.y)
+      if ($(`#${win.id}`).height() < 100) $(`#${win.id}`).height(100)
+
+    }
+    if (resizeBmousedown) {
+      console.log(offsetLeft + deltaLeft + mouse.x - mouseOffsetX, mouseOffsetX - mouse.x)
+      console.log($(`#${win.id}`).height(), mouseOffsetX, mouse.x)
+      windows.find(w => w.name = win.id).resizeNS(deltaTop, mouse.y - mouseOffsetY + origionalHeight)
+      if ($(`#${win.id}`).height() < 100) $(`#${win.id}`).height(100)
+
+    }
   })
 
   $(document).on('mouseup', event => {
-    if(objClass != "topBarOverlay") return
+    if (objClass != "topBarOverlay") return
     if ($(win).css('top').replace('px', '') == 0) {
       windows.find(w => w.name = win.id).maximise()
     }
-    
   })
 })
