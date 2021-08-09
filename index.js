@@ -2,7 +2,6 @@ let mouse, mousedown, deltaLeft, deltaTop, mouseOffsetX, mouseOffsetY, obj, objC
   win, currentWin, windows = [],
   lastWin, offsetLeft = 0,
   newWindow = {},
-  cmdOpen = false,
   resizeLmousedown = false,
   resizeRmousedown = false,
   resizeTmousedown = false,
@@ -109,8 +108,8 @@ $(() => {
 
   $(document).on('click', event => {
     if (event.target.id == "cmdIconOverlay") {
-      console.log(cmdOpen)
-      if (!cmdOpen) {
+      console.log(programs)
+      if (programs.cmd == 'closed') {
         addWindow('cmd', generateID())
         console.log($('#cmdIcon'))
         $('#cmdIconOverlay').css('background-color', 'rgba(117, 117, 117, 0.349)')
@@ -159,7 +158,9 @@ $(() => {
       removeWindow(win)
       if ($(win)[0].children[0].children[0].innerHTML == "cmd") {
         $('#cmdIconOverlay').css('background-color', 'rgba(117, 117, 117, 0)')
-        cmdOpen = false
+        programs.cmd = 'closed'
+      } else if($(win)[0].children[0].children[0].innerHTML == "Task Timer") {
+        programs.taskTimer = 'closed'
       }
     } else if (objClass == "bsOverlay") {
       siblings = obj[0].parentNode.children

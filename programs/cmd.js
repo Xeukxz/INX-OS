@@ -7,8 +7,8 @@ $(() => {
   $('#cmdIconOverlay').on('click', event => {
 
     setTimeout(() => {
-      console.log(cmdOpen)
-      if (!cmdOpen) cmdOpen = true
+      console.log(programs.cmd)
+      if (programs.cmd == 'closed') programs.cmd = true
       else return
 
       if (newWindow.name == 'cmd') {
