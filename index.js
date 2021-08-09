@@ -7,8 +7,16 @@ let mouse, mousedown, deltaLeft, deltaTop, mouseOffsetX, mouseOffsetY, obj, objC
   resizeRmousedown = false,
   resizeTmousedown = false,
   resizeBmousedown = false,
-  origionalWidth, origionalHeight
+  origionalWidth, origionalHeight, closed = 'closed',
+  open = 'open',
+  programs = {
+    cmd: 'closed',
+    taskTimer: 'closed'
+  }
 $(() => {
+
+  /*   icon.width = (window.innerWidth/20)-10;
+    icon.height = (window.innerHeight/8)-10; */
 
   function generateID() {
     let chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890--"
@@ -17,28 +25,18 @@ $(() => {
     return id.join('')
   }
 
-  $('.window').css('left', `${window.innerWidth - 200}px`)
-  $('.window').css('top', `${window.innerHeight - 150}px`)
-
-  // later feature:
-
-  /*   function withinAdjustRange(el) {
-      console.log(mouse.x, el[0].offsetLeft+el.width()-2, el[0].offsetLeft+el.width()+2)
-      if(mouse.x >= el[0].offsetLeft+el.width()-5 && mouse.x <= el[0].offsetLeft+el.width()+5 && mouse.y >= el[0].offsetTop && mouse.y < el[0].offsetTop+el.height()) {
-        $('body').css('cursor', 'e-resize')
-        expandEl = true
-        console.log('ja')
-      } else if(mouse.x >= el[0].offsetLeft-5 && mouse.x >= el[0].offsetLeft+5) {
-
+  /*   setTimeout(() => {
+      var style=document.createElement('style');
+      style.type='text/css';
+      if(style.styleSheet){
+          style.styleSheet.cssText='position: absolute;width: calc(25% + 0px);height: calc(33.33% + 0px);background-color: rgb(37, 37, 37);box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.247);';
+      }else{
+          style.appendChild(document.createTextNode('position: absolute;width: calc(25% + 0px);height: calc(33.33% + 0px);background-color: rgb(37, 37, 37);box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.247);'));
       }
-      else {
-        $('body').css('cursor', 'default')
-      }
-    }
+      $('.window').css('left', `${window.innerWidth/2 - ($('.window').width()/2)}px`)
+      $('.window').css('top', `${window.innerHeight/2 - ($('.window').height()/2)}px`)
 
-    function expandElement(el) {
-
-    } */
+    }, 1); */
 
   /*   function fall(element) {
       let bottom = window.innerHeight - element.height() - $(element[0].parentElement)[0].offsetTop
@@ -72,6 +70,10 @@ $(() => {
     window.bringToTop($(`#${window.name}`)[0])
     if (name == "cmd") newWindow = {
       name: 'cmd',
+      id: id
+    }
+    else if (name == "Task Timer") newWindow = {
+      name: 'Task Timer',
       id: id
     }
 
@@ -114,6 +116,21 @@ $(() => {
         $('#cmdIconOverlay').css('background-color', 'rgba(117, 117, 117, 0.349)')
       }
     }
+  })
+
+  $(document).on('dblclick', event => {
+    console.log(event.target.id)
+    if (event.target.id == "taskTimerIcon") {
+      console.log(programs.taskTimer)
+      if (programs.taskTimer == 'closed') {
+        addWindow('Task Timer', generateID())
+        console.log('ja')
+        /* $('#cmdIconOverlay').css('background-color', 'rgba(117, 117, 117, 0.349)') */
+      }
+    }
+    console.log(event.target)
+    console.log($(event.target))
+    /* if(event.target) */
   })
 
   /*   $(document).on('mouseover', event => {
@@ -189,6 +206,55 @@ $(() => {
       mouseOffsetY = mouse.y
 
       bringToFront(win)
+
+    } else if (objClass == "topleftExpander") {
+      resizeTmousedown = true
+      resizeLmousedown = true
+      deltaLeft = $(win)[0].offsetLeft
+      deltaTop = $(win)[0].offsetTop
+      mouseOffsetX = mouse.x
+      origionalHeight = $(`#${win.id}`).height()
+      origionalWidth = $(`#${win.id}`).width()
+      mouseOffsetY = mouse.y
+
+      bringToFront(win)
+
+    } else if (objClass == "toprightExpander") {
+      resizeTmousedown = true
+      resizeRmousedown = true
+      deltaLeft = $(win)[0].offsetLeft
+      deltaTop = $(win)[0].offsetTop
+      mouseOffsetX = mouse.x
+      origionalHeight = $(`#${win.id}`).height()
+      origionalWidth = $(`#${win.id}`).width()
+      mouseOffsetY = mouse.y
+
+      bringToFront(win)
+
+    } else if (objClass == "bottomleftExpander") {
+      resizeBmousedown = true
+      resizeLmousedown = true
+      deltaLeft = $(win)[0].offsetLeft
+      deltaTop = $(win)[0].offsetTop
+      mouseOffsetX = mouse.x
+      origionalHeight = $(`#${win.id}`).height()
+      origionalWidth = $(`#${win.id}`).width()
+      mouseOffsetY = mouse.y
+
+      bringToFront(win)
+
+    } else if (objClass == "bottomrightExpander") {
+      resizeBmousedown = true
+      resizeRmousedown = true
+      deltaLeft = $(win)[0].offsetLeft
+      deltaTop = $(win)[0].offsetTop
+      mouseOffsetX = mouse.x
+      origionalHeight = $(`#${win.id}`).height()
+      origionalWidth = $(`#${win.id}`).width()
+      mouseOffsetY = mouse.y
+
+      bringToFront(win)
+
     }
 
     if (obj[0].classList.value == 'rect' && obj[0].id == `rect${rectNo}`) {
@@ -235,6 +301,8 @@ $(() => {
       console.log($(`#${win.id}`).width(), mouseOffsetX, mouse.x)
       windows.find(w => w.name = win.id).resizeEW(offsetLeft + deltaLeft + mouse.x - mouseOffsetX, mouseOffsetX + origionalWidth - mouse.x)
       if ($(`#${win.id}`).width() < 200) $(`#${win.id}`).width(200)
+      windows.find(w => w.name = win.id).width = $(`#${win.id}`).width()
+      windows.find(w => w.name = win.id).height = $(`#${win.id}`).height()
 
     }
     if (resizeRmousedown) {
@@ -242,6 +310,8 @@ $(() => {
       console.log($(`#${win.id}`).width(), mouseOffsetX, mouse.x)
       windows.find(w => w.name = win.id).resizeEW(deltaLeft, mouse.x - mouseOffsetX + origionalWidth)
       if ($(`#${win.id}`).width() < 200) $(`#${win.id}`).width(200)
+      windows.find(w => w.name = win.id).width = $(`#${win.id}`).width()
+      windows.find(w => w.name = win.id).height = $(`#${win.id}`).height()
 
     }
     if (resizeTmousedown) {
@@ -249,6 +319,8 @@ $(() => {
       console.log($(`#${win.id}`).width(), mouseOffsetX, mouse.x)
       windows.find(w => w.name = win.id).resizeNS(deltaTop + mouse.y - mouseOffsetY, mouseOffsetY + origionalHeight - mouse.y)
       if ($(`#${win.id}`).height() < 100) $(`#${win.id}`).height(100)
+      windows.find(w => w.name = win.id).width = $(`#${win.id}`).width()
+      windows.find(w => w.name = win.id).height = $(`#${win.id}`).height()
 
     }
     if (resizeBmousedown) {
@@ -256,7 +328,8 @@ $(() => {
       console.log($(`#${win.id}`).height(), mouseOffsetX, mouse.x)
       windows.find(w => w.name = win.id).resizeNS(deltaTop, mouse.y - mouseOffsetY + origionalHeight)
       if ($(`#${win.id}`).height() < 100) $(`#${win.id}`).height(100)
-
+      windows.find(w => w.name = win.id).width = $(`#${win.id}`).width()
+      windows.find(w => w.name = win.id).height = $(`#${win.id}`).height()
     }
   })
 

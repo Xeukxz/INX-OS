@@ -3,16 +3,50 @@
 <head>
   <title></title>
   <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="stylesheet" type="text/css" href="programs/taskTimer.css">
   <link href='https://fonts.googleapis.com/css?family=Anonymous Pro' rel='stylesheet'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="Classes.js"></script>
   <script src="index.js"></script>
   <script src="programs/cmd.js"></script>
+  <script src="programs/taskTimer.js"></script>
 </head>
 
 <body>
   <img id="bgimg" src="INX3.png">
+  <div id="icons">
+    <div class="icon" id="taskTimerIcon">
+      <div class="iconContent">
+        <svg height="50" width="50">
+          <line x1="5%" y1="10%" x2="95%" y2="10%" style="stroke:white;stroke-width:2" />
+          <line x1="5%" y1="30%" x2="95%" y2="30%" style="stroke:white;stroke-width:2" />
+          <line x1="5%" y1="50%" x2="95%" y2="50%" style="stroke:white;stroke-width:2" />
+          <line x1="5%" y1="70%" x2="95%" y2="70%" style="stroke:white;stroke-width:2" />
+          <line x1="5%" y1="90%" x2="30%" y2="90%" style="stroke:white;stroke-width:2" />
+          <text x="40%" y="98%" style="fill:white;font: 100% sans-serif">00:00</text>
+        </svg>
+        <br><br>
+        Task Timer
+      </div>
+      <div class="IconOverlay"></div>
+    </div>
+  </div>
   <div id="front"></div>
+
+<!--   <div class="iconParent">
+    <div class="iconCut"></div>
+    <div class="iconCut2"></div>
+    <div class="iconChild1"></div>
+    <div class="iconChild2"></div>
+    
+
+  </div> -->
+
+
+  <!-- <canvas class="icon" id="icon"></canvas> -->
+
+  
+
 
   <div id="taskBar">
     <div class="tbIcon" id="menuIcon">

@@ -46,8 +46,15 @@ class Window {
         <div class="rightExpander"></div>
         <div class="topExpander"></div>
         <div class="bottomExpander"></div>
+        <div class="topleftExpander"></div>
+        <div class="toprightExpander"></div>
+        <div class="bottomleftExpander"></div>
+        <div class="bottomrightExpander"></div>
       </div>
     `)
+    $(`#${this.id}`).css('left', `${window.innerWidth/2 - ($('.window').width()/2)}px`)
+    $(`#${this.id}`).css('top', `${window.innerHeight/2 - ($('.window').height()/2)}px`)
+
   }
   bringToTop() {
     $(`#${this.id}`)[0].parentNode.insertBefore($(`#${this.id}`)[0], $('#front')[0])
@@ -56,7 +63,7 @@ class Window {
     this.lastPos.x = $(`#${this.name}`)[0].offsetLeft
     this.lastPos.y = $(`#${this.name}`)[0].offsetTop
     this.element.css('width', `100%`)
-    this.element.css('height', `100%`)
+    this.element.css('height', `calc(100% - 40px)`)
     this.element.css('left', `0px`)
     this.element.css('top', `0px`)
     this.element.css('transform', `translate(0px, 0px)`)
@@ -67,8 +74,8 @@ class Window {
 
 
   minimise() {
-    this.element.css('width', `${window.innerWidth/4}px`)
-    this.element.css('height', `${window.innerHeight/3}px`)
+    this.element.css('width', `${this.width}px`)
+    this.element.css('height', `${this.height}px`)
     this.element.css('left', `${this.lastPos.x}px`)
     this.element.css('top', `${this.lastPos.y}px`)
     $(this.element[0].children[0].children[2].children[0]).css('display', 'inline')

@@ -1,4 +1,4 @@
-//console.log('cmd.js ✔')
+console.log('cmd.js ✔')
 
 let cmdHistory = [],
   cmdHistoryNo = 0
