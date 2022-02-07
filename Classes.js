@@ -1,3 +1,4 @@
+let z_index = 1
 class Window {
   constructor(name, id) {
     this.name = name
@@ -57,11 +58,15 @@ class Window {
 
   }
   bringToTop() {
-    $(`#${this.id}`)[0].parentNode.insertBefore($(`#${this.id}`)[0], $('#front')[0])
+    //$(`#${this.id}`)[0].parentNode.insertBefore($(`#${this.id}`)[0], $('#front')[0])
+    $(`#${this.id}`).css(`z-index`, z_index)
+    //$(`#taskBar`).css(`z-index`, z_index+1)
+    z_index++
+    console.log(z_index)
   }
   maximise(val) {
-    this.lastPos.x = $(`#${this.name}`)[0].offsetLeft
-    this.lastPos.y = $(`#${this.name}`)[0].offsetTop
+    this.lastPos.x = $(`#${this.id}`)[0].offsetLeft
+    this.lastPos.y = $(`#${this.id}`)[0].offsetTop
     this.element.css('width', `100%`)
     this.element.css('height', `calc(100% - 40px)`)
     this.element.css('left', `0px`)
@@ -104,7 +109,7 @@ class Window {
   }
 
   get element() {
-    return $(`#${this.name}`)
+    return $(`#${this.id}`)
   }
 
 }

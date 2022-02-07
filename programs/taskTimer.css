@@ -15,9 +15,9 @@ input {
 	width: calc(100% - 10px);
 	background-color: #1e1e1e;
 	margin: 0px;
-  height: calc(100% - 40px);
-  font-size: 17px;
-  padding: 5px;
+	height: calc(100% - 40px);
+	font-size: 17px;
+	padding: 5px;
 }
 
 #windowFrame {
@@ -34,19 +34,19 @@ input {
 	width: 100%;
 	height: calc(100% - 55px);
 	background-color: rgb(43, 43, 43);
-  overflow-y: scroll;
+	overflow-y: scroll;
 }
 
 #innerFrame::-webkit-scrollbar {
-  width: 10px
+	width: 10px
 }
 
 #innerFrame::-webkit-scrollbar-track {
-  background-color: rgba(0, 0, 0, 0)
+	background-color: rgba(0, 0, 0, 0)
 }
 
 #innerFrame::-webkit-scrollbar-thumb {
-  background-color: rgb(68, 68, 68)
+	background-color: rgb(68, 68, 68)
 }
 
 .pannel {
@@ -129,7 +129,7 @@ input {
 	margin: 0px;
 	top: 50%;
 	transform: translate(0%, -50%);
-  float: right;
+	float: right;
 }
 
 #buttonss {

@@ -4,6 +4,7 @@ let cmdHistory = [],
   cmdHistoryNo = 0
 
 $(() => {
+
   $('#cmdIconOverlay').on('click', event => {
 
     setTimeout(() => {
@@ -29,6 +30,11 @@ $(() => {
       }
     }, 1);
 
+    setTimeout(() => {
+      
+      $(`#cmdContentBox`).append(`<p><span>> Use command <span style="text-decoration: underline">cmds</span> for command info</span></p>`)
+    }, 1);
+
   })
 
   /*   setInterval(() => {
@@ -37,30 +43,80 @@ $(() => {
 
 })
 
+function fall(element) {
+  setTimeout(() => {
+
+    let bottom = window.innerHeight - element.height() - $(element[0].parentElement)[0].offsetTop - 40
+    console.log(window.innerHeight, $(element[0].parentElement)[0].offsetTop, element, bottom)
+    let acceleration = 0.05
+    console.log(bottom)
+    let drop = setInterval(() => {
+      acceleration += 0.05
+      if (element[0].offsetTop < bottom) $(element).css('top', `${element[0].offsetTop + acceleration}`)
+      else {
+        $(element).css('top', `${bottom}px`)
+        clearInterval(drop)
+      }
+    }, 1);
+  }, 1);
+}
+
 $(document).on('keypress', event => {
   if (event.target == $('#cmdInput')[0]) {
     if (event.keyCode == '13') {
       let cmdText = $('#cmdInput').html(),
         cmdOldText = $('#cmdInput').html()
+
+
+
       while (cmdText.includes('&lt;')) cmdText = cmdText.replace('&lt;', '<')
       while (cmdText.includes('&gt;')) cmdText = cmdText.replace('&gt;', '>')
       console.log(cmdText)
       $(`#cmdContentBox`).append(`<p>> ${cmdText}</p>`)
       $('#cmdInput').html('')
-      console.log(cmdHistory, cmdHistory.length, cmdHistory[cmdHistory.length-1], cmdOldText)
-      if (cmdHistory[cmdHistory.length-1] != cmdOldText && cmdOldText != "") {
+      console.log(cmdHistory, cmdHistory.length, cmdHistory[cmdHistory.length - 1], cmdOldText)
+      if (cmdHistory[cmdHistory.length - 1] != cmdOldText && cmdOldText != "") {
         cmdHistory.push(cmdOldText)
         cmdHistoryNo = cmdHistory.length
 
       }
+
+      console.log(cmdText)
+
+      if (cmdText == `desktop.background.switch()` || cmdText == `desktop.bgswitch()`) {
+        console.log('wiwi')
+        console.log()
+        if ($('#bgimg2').css('display') == 'none') {
+          $('#bgimg2').css('display', 'block')
+          $('#bgimg1').css('display', 'none')
+        } else if ($('#bgimg1').css('display') == 'none') {
+          $('#bgimg1').css('display', 'block')
+          $('#bgimg2').css('display', 'none')
+        }
+
+      } else if (cmdText == `desktop.toggleGravity()` || cmdText == `desktop.gravity()`) {
+        console.log(windows)
+        for (let i in windows) {
+          fall($(`#${windows[i].id}`))
+        }
+        if (gravity) gravity = false
+        else gravity = true
+      } else if (cmdText == `help` || cmdText == `?`) {
+        $(`#cmdContentBox`).append(`<p>> Commands:</p>`)
+        $(`#cmdContentBox`).append(`<p>> - desktop.background.switch()</p>`)
+        $(`#cmdContentBox`).append(`<p>> - desktop.toggleGravity</p>`)
+
+      }
+
+
       return false
     }
   }
 })
 
 $(document).on('keydown', event => {
-  console.log(event.keyCode)
-  console.log(cmdHistory, cmdHistoryNo)
+  /* console.log(event.keyCode)
+  console.log(cmdHistory, cmdHistoryNo) */
   if (event.target == $('#cmdInput')[0]) {
     if (event.keyCode == '38') {
       if (cmdHistoryNo <= 0) return
@@ -84,6 +140,7 @@ $(document).on('keydown', event => {
 })
 
 $(document).on('click', event => {
+  console.log('pp')
   console.log(event.target.id)
   if (event.target.id == 'cmdStretcher') {
     console.log('mogusy')

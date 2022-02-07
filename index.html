@@ -7,13 +7,15 @@
   <link href='https://fonts.googleapis.com/css?family=Anonymous Pro' rel='stylesheet'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="Classes.js"></script>
+  <script src="processes/menu.js"></script>
   <script src="index.js"></script>
   <script src="programs/cmd.js"></script>
   <script src="programs/taskTimer.js"></script>
 </head>
 
 <body>
-  <img id="bgimg" src="INX3.png">
+  <img id="bgimg1" src="INX3.png">
+  <img id="bgimg2" src="bg2.jpg">
   <div id="icons">
     <div class="icon" id="taskTimerIcon">
       <div class="iconContent">
@@ -46,8 +48,6 @@
   <!-- <canvas class="icon" id="icon"></canvas> -->
 
   
-
-
   <div id="taskBar">
     <div class="tbIcon" id="menuIcon">
       <div class="tbIconContent">
@@ -55,7 +55,7 @@
       </div>
       <div class="tbIconOverlay" id="menuIconOverlay"></div>
     </div>
-
+    
     <div class="tbIcon" id="searchIcon">
       <div class="tbIconContent">
         <svg height="40" width="40">
@@ -65,7 +65,7 @@
       </div>
       <div class="tbIconOverlay" id=searchIconOverlay"></div>
     </div>
-
+    
     <div class="tbIcon" id="cmdIcon">
       <div class="tbIconContent">
         <svg height="40" width="40">
@@ -81,12 +81,30 @@
       </div>
       <div class="tbIconOverlay" id="cmdIconOverlay"></div>
     </div>
-
+    
   </div>
-
-  <button id="addWin" style="float: right">
+  
+  <div id="menu">
+    zy xwv
+    <br>
+    abc d ef ghij
+    <div id="menuSearchResults">
+      <div id="menuSearchResult">
+        <div id="menuSearchResultIcon"></div>
+        <div id="menuSearchResultText">amogos</div>
+      </div>
+    </div>
+    <div id="menuSearch">
+      <span id="menuSearchFillertext" style="user-select: none; color: rgba(0, 0, 0, 0.374);background-color: white;">Type here to search</span>
+      <div id="menuSearchOverlay">
+        <span id="menuSearchTyping" contenteditable="true"></span>
+      </div>
+    </div>
+  </div>
+  
+<!--   <button id="addWin" style="float: right">
     Add Window
-  </button>
+  </button> -->
 
 
 
