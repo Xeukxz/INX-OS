@@ -190,7 +190,7 @@ p {
 }
 
 .icon {
-  position: absolute;
+  position: relative;
   width: calc(12.5% - 10px);
   height: calc(12.5% - 10px);
   /* background-color: rgba(255, 0, 0, 0.37); */

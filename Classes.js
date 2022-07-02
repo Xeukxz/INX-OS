@@ -14,9 +14,10 @@ class Window {
       x: 0,
       y: 0
     }
-    this.createHtml()
+    this.open = false
+    this.createHTML()
   }
-  createHtml() {
+  createHTML() {
     $('body').append(`  
       <div class="window" id="${this.id}">
         <div class="topBar">
@@ -57,10 +58,14 @@ class Window {
     $(`#${this.id}`).css('top', `${window.innerHeight/2 - ($('.window').height()/2)}px`)
 
   }
+  deleteHTML() {
+    $(`#${this.id}`).remove()
+  }
+
   bringToTop() {
     //$(`#${this.id}`)[0].parentNode.insertBefore($(`#${this.id}`)[0], $('#front')[0])
     $(`#${this.id}`).css(`z-index`, z_index)
-    //$(`#taskBar`).css(`z-index`, z_index+1)
+    $(`#taskBar`).css(`z-index`, z_index+1)
     z_index++
     console.log(z_index)
   }
@@ -98,12 +103,10 @@ class Window {
   }
 
   resizeEW(x, xx) {
-    console.log('mama')
     this.element.css('left', `${x}px`)
     this.element.css('width', `${xx}px`)
   }
   resizeNS(y, yy) {
-    console.log('mama')
     this.element.css('top', `${y}px`)
     this.element.css('height', `${yy}px`)
   }

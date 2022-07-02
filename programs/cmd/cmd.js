@@ -6,11 +6,11 @@ let cmdHistory = [],
 $(() => {
 
   $('#cmdIconOverlay').on('click', event => {
+    console.log(programs.cmd)
+    if (programs.cmd != 'closed') return
 
     setTimeout(() => {
-      console.log(programs.cmd)
-      if (programs.cmd == 'closed') programs.cmd = true
-      else return
+      programs.cmd = true
 
       if (newWindow.name == 'cmd') {
         $($(`#${newWindow.id}`)[0].children[1]).append(`
@@ -31,7 +31,7 @@ $(() => {
     }, 1);
 
     setTimeout(() => {
-      
+
       $(`#cmdContentBox`).append(`<p><span>> Use command <span style="text-decoration: underline">cmds</span> for command info</span></p>`)
     }, 1);
 
@@ -68,9 +68,7 @@ $(document).on('keypress', event => {
         cmdOldText = $('#cmdInput').html()
 
 
-
-      while (cmdText.includes('&lt;')) cmdText = cmdText.replace('&lt;', '<')
-      while (cmdText.includes('&gt;')) cmdText = cmdText.replace('&gt;', '>')
+      cmdText = cmdText.replaceAll('&lt;', '<').replaceAll('&gt;', '>')
       console.log(cmdText)
       $(`#cmdContentBox`).append(`<p>> ${cmdText}</p>`)
       $('#cmdInput').html('')
@@ -101,10 +99,10 @@ $(document).on('keypress', event => {
         }
         if (gravity) gravity = false
         else gravity = true
-      } else if (cmdText == `help` || cmdText == `?`) {
+      } else if (['cmds','commands','help','?'].includes(cmdText)) {
         $(`#cmdContentBox`).append(`<p>> Commands:</p>`)
         $(`#cmdContentBox`).append(`<p>> - desktop.background.switch()</p>`)
-        $(`#cmdContentBox`).append(`<p>> - desktop.toggleGravity</p>`)
+        $(`#cmdContentBox`).append(`<p>> - desktop.toggleGravity()</p>`)
 
       }
 

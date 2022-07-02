@@ -3,14 +3,19 @@
 <head>
   <title></title>
   <link rel="stylesheet" type="text/css" href="index.css">
-  <link rel="stylesheet" type="text/css" href="programs/taskTimer.css">
+  <link rel="stylesheet" type="text/css" href="programs/TaskTimer/taskTimer.css">
+  <link rel="stylesheet" type="text/css" href="programs/FireSim/FireSim.css">
+  <link rel="stylesheet" type="text/css" href="programs/GamblingSim/GamblingSim.css">
+  <!-- <link rel="stylesheet" type="text/css" href="programs/GamblingSim/GamblingSim.css"> -->
   <link href='https://fonts.googleapis.com/css?family=Anonymous Pro' rel='stylesheet'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="Classes.js"></script>
   <script src="processes/menu.js"></script>
   <script src="index.js"></script>
-  <script src="programs/cmd.js"></script>
-  <script src="programs/taskTimer.js"></script>
+  <script src="programs/cmd/cmd.js"></script>
+  <script src="programs/TaskTimer/taskTimer.js"></script>
+  <script src="programs/FireSim/FireSim.js"></script>
+  <script src="programs/GamblingSim/GamblingSim.js"></script>
 </head>
 
 <body>
@@ -32,22 +37,94 @@
       </div>
       <div class="IconOverlay"></div>
     </div>
+    
+    <div class="icon" id="fireSimIcon">
+      <div class="iconContent">
+        <svg viewBox="139.39 151.608 54.01 75.846" width="50" height="50">
+          <defs>
+            <filter id="morphology-filter-0" data-bx-preset="morphology 1 dilate 0" x="-500%" y="-500%" width="1000%"
+              height="1000%">
+              <feMorphology operator="dilate" radius="0"></feMorphology>
+            </filter>
+          </defs>
+          <path style="filter: url(#morphology-filter-0); fill: rgb(255, 255, 255); stroke: rgba(0, 0, 0, 0);"
+            d="M 193.255 193.804 C 196.611 241.014 140.355 232.334 139.42 205.682 C 139.286 201.867 139.509 197.374 141.951 190.154 C 143.396 185.873 148.68 179.537 148.68 179.537 C 148.68 179.537 148.007 183.812 148.915 185.704 C 150.962 189.968 157.208 188.644 158.758 184.913 C 161.556 178.182 159.756 171.136 159.282 168.372 C 157.644 158.822 169.739 151.608 169.739 151.608 C 169.739 151.608 166.873 160.225 169.637 167.485 C 171.653 172.78 175.254 173.963 178.14 180.139 C 182.694 189.883 180.371 203.487 180.371 203.487 C 180.371 203.487 183.573 201.737 186.159 198.085 C 190.646 191.749 188.661 183.592 188.661 183.592 C 188.661 183.592 192.868 188.361 193.255 193.804 Z">
+          </path>
+        </svg>
+        <br><br>
+        Basic Fire
+      </div>
+      <div class="IconOverlay"></div>
+
+    </div>
+    <div class="icon" id="gamblingSimIcon">
+      <div class="iconContent">
+        <!doctype html>
+        <svg viewBox="0.497 52.272 99.067 99.067" width="50" height="50">
+<!--           <line x1="5%" y1="95%" x2="5%" y2="5%" style="stroke:white;stroke-width:2" />
+          <line x1="5%" y1="5%" x2="95%" y2="95%" style="stroke:white;stroke-width:2" /> -->
+          <rect x="0.497" y="52.272" width="99.067" height="99.067"
+            style="stroke: rgba(0, 0, 0, 0); fill: rgba(0, 0, 0, 0);"></rect>
+          <path
+            style="fill: rgb(216, 216, 216); paint-order: fill; fill-rule: nonzero; fill-opacity: 0; stroke-linecap: round; stroke: rgb(255, 255, 255); stroke-width: 5px;"
+            d="M 8.847 143.426 L 35.535 102.398 L 59.633 128.935 L 92.592 59.45"></path>
+        </svg>
+        <br><br>
+        Gambling Sim
+      </div>
+      <div class="IconOverlay"></div>
+    </div>
+
+    <div class="icon" id="ParticleControlIcon">
+      <div class="iconContent">
+        <svg viewBox="11.909 62.718 79.693 76.217" width="50" height="50">
+          <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="15.203" cy="135.641" rx="3.294" ry="3.294"></ellipse>
+          <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="26.09" cy="113.59" rx="3.294" ry="3.294"></ellipse>
+          <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="17.49" cy="83.762" rx="3.294" ry="3.294"></ellipse>
+          <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="51.343" cy="89.252" rx="3.294" ry="3.294"></ellipse>
+          <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="33.044" cy="68.94" rx="3.294" ry="3.294"></ellipse>
+          <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="68.545" cy="130.792" rx="3.294" ry="3.294"></ellipse>
+          <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="77.329" cy="109.93" rx="3.294" ry="3.294"></ellipse>
+          <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="71.107" cy="66.012" rx="3.294" ry="3.294"></ellipse>
+          <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="88.308" cy="78.821" rx="3.294" ry="3.294"></ellipse>
+          <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="51.526" cy="114.139" rx="3.294" ry="3.294"></ellipse>
+          <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="43.658" cy="133.353" rx="3.294" ry="3.294"></ellipse>
+        </svg>
+        <br><br>
+        Particle Control
+      </div>
+      <div class="IconOverlay"></div>
+    </div>
   </div>
   <div id="front"></div>
 
-<!--   <div class="iconParent">
+  <!--   <div class="iconParent">
     <div class="iconCut"></div>
     <div class="iconCut2"></div>
     <div class="iconChild1"></div>
     <div class="iconChild2"></div>
     
+    <!doctype html>
+<svg viewBox="11.909 62.718 79.693 76.217" width="79.693" height="76.217">
+  <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="15.203" cy="135.641" rx="3.294" ry="3.294"></ellipse>
+  <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="26.09" cy="113.59" rx="3.294" ry="3.294"></ellipse>
+  <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="17.49" cy="83.762" rx="3.294" ry="3.294"></ellipse>
+  <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="51.343" cy="89.252" rx="3.294" ry="3.294"></ellipse>
+  <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="33.044" cy="68.94" rx="3.294" ry="3.294"></ellipse>
+  <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="68.545" cy="130.792" rx="3.294" ry="3.294"></ellipse>
+  <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="77.329" cy="109.93" rx="3.294" ry="3.294"></ellipse>
+  <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="71.107" cy="66.012" rx="3.294" ry="3.294"></ellipse>
+  <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="88.308" cy="78.821" rx="3.294" ry="3.294"></ellipse>
+  <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="51.526" cy="114.139" rx="3.294" ry="3.294"></ellipse>
+  <ellipse style="fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255); stroke-opacity: 0;" cx="43.658" cy="133.353" rx="3.294" ry="3.294"></ellipse>
+</svg>
 
   </div> -->
 
 
   <!-- <canvas class="icon" id="icon"></canvas> -->
 
-  
+
   <div id="taskBar">
     <div class="tbIcon" id="menuIcon">
       <div class="tbIconContent">
@@ -55,7 +132,7 @@
       </div>
       <div class="tbIconOverlay" id="menuIconOverlay"></div>
     </div>
-    
+
     <div class="tbIcon" id="searchIcon">
       <div class="tbIconContent">
         <svg height="40" width="40">
@@ -65,14 +142,14 @@
       </div>
       <div class="tbIconOverlay" id=searchIconOverlay"></div>
     </div>
-    
+
     <div class="tbIcon" id="cmdIcon">
       <div class="tbIconContent">
         <svg height="40" width="40">
           <line x1="10" y1="15" x2="15.7" y2="20.7" style="stroke:white;stroke-width:2" />
           <line x1="15" y1="20" x2="10" y2="25" style="stroke:white;stroke-width:2" />
           <line x1="20" y1="25" x2="30" y2="25" style="stroke:white;stroke-width:2" />
-          
+
           <line x1="5" y1="11" x2="35" y2="11" style="stroke:white;stroke-width:1.7" />
           <line x1="35" y1="10" x2="35" y2="30" style="stroke:white;stroke-width:1.7" />
           <line x1="35" y1="29" x2="5" y2="29" style="stroke:white;stroke-width:1.7" />
@@ -81,10 +158,10 @@
       </div>
       <div class="tbIconOverlay" id="cmdIconOverlay"></div>
     </div>
-    
+
   </div>
-  
-  <div id="menu">
+
+<!--   <div id="menu">
     zy xwv
     <br>
     abc d ef ghij
@@ -95,14 +172,15 @@
       </div>
     </div>
     <div id="menuSearch">
-      <span id="menuSearchFillertext" style="user-select: none; color: rgba(0, 0, 0, 0.374);background-color: white;">Type here to search</span>
+      <span id="menuSearchFillertext"
+        style="user-select: none; color: rgba(0, 0, 0, 0.374);background-color: white;">Type here to search</span>
       <div id="menuSearchOverlay">
         <span id="menuSearchTyping" contenteditable="true"></span>
       </div>
     </div>
-  </div>
-  
-<!--   <button id="addWin" style="float: right">
+  </div> -->
+
+  <!--   <button id="addWin" style="float: right">
     Add Window
   </button> -->
 

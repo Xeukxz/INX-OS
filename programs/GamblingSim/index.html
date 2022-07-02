@@ -1,0 +1,85 @@
+<html>
+
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <div id="modesPopup">
+    <p style="margin: 20px;">Select Mode</p>
+    <div class="split" style="height: 4px"></div>
+    <div id="modes">
+      <p><span id="mode-Default">Default</span></p>
+      <p><span id="mode-QuickRun">Quick Run</span></p>
+      <p><span id="mode-MultipleIterations">Multiple Iterations</span></p>
+      <p><span id="mode-Averages">Averages</span></p>
+      <p><span id="mode-Custom">Custom</span></p>
+
+    </div>
+  </div>
+  <div id="roundingPopup">
+    <p style="margin: 20px;">Select A Rounding Value</p>
+    <div class="split" style="height: 4px"></div>
+    <br>
+    <div id="roundingVals">
+      <p><span id="round0">0</span><span id="round1">1</span></p>
+      <p><span id="round2">2</span><span id="round3">3</span></p>
+      <p><span id="round4">4</span><span id="round5">5</span></p>
+    </div>
+    <span id="closeRounding">Exit</span>
+  </div>
+  <div id="stats">
+    <div id="options">
+      <div id="option-run" class="option"><span
+          style="position:relative;float:left;left:50%;top:50%;transform:translate(-50%, -50%);padding:20px;">Run
+          Simulation</span></div>
+      <div id="option-color" class="option"><span
+          style="position:relative;float:left;left:50%;top:50%;transform:translate(-50%, -50%);padding:20px;">Toggle
+          Profit<br>Colors</span></div>
+      <div id="option-round" class="option"><span
+          style="position:relative;float:left;left:50%;top:50%;transform:translate(-50%, -50%);padding:20px;">Set
+          Rounding</span></div>
+      <div id="option-modes" class="option"><span
+          style="position:relative;float:left;left:50%;top:50%;transform:translate(-50%, -50%);padding:20px;">Change
+          Mode</span></div>
+      <div id="option-modeSettings" class="option"><span
+          style="position:relative;float:left;left:50%;top:50%;transform:translate(-50%, -50%);padding:20px;">Mode
+          Settings</span></div>
+      <div id="option-info" class="option"><span
+          style="position:relative;float:left;left:50%;top:50%;transform:translate(-50%, -50%);padding:20px;">Information</span>
+      </div>
+    </div>
+
+    <div class="split" style="height: 4px;"></div>
+    <canvas id="myCanvas"></canvas>
+    <div class="split" id="statsplit" style="width: 4px;float: left;height: calc(100% - 54px);"></div>
+    <div id="log">
+      <!--     <p id="logValue">
+      <span class="logValueVal">
+        Bal: 100
+      </span>
+      <span class="logValueVal">
+        Bet: 2
+      </span>
+      <span class="logValueVal">
+        Profit: 0
+      </span>
+    </p> -->
+    </div>
+    <div class="split" style="height: 4px;float: left; width: 100%"></div>
+    <br>
+    <div id="msgContainer">
+      <div id="message"></div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>
